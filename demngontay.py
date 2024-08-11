@@ -7,13 +7,13 @@ cap = cv2.VideoCapture(0)
 FolderPath="Fingers"
 lst=os.listdir(FolderPath)
 lst_2=[]
-songontay = 0  # Khởi tạo songontay với giá trị mặc định
+songontay = 0
 
 for i in lst:
-    image=cv2.imread(f"{FolderPath}/{i}")
+    image = cv2.imread(f"{FolderPath}/{i}")
     lst_2.append(image)
-detector=htm.handDetector(detectionCon=0.55)
-fingerid=[4,8,12,16,20]
+detector = htm.handDetector(detectionCon=0.55)
+fingerid = [4, 8, 12, 16, 20]
 while True:
   # Đọc ảnh
     ret, frame = cap.read()
@@ -22,13 +22,13 @@ while True:
     if len(lmList)!=0:
         fingers= []
 
-        # Viết cho ngón cái
+        # Xứ lí cho ngón cái
         if lmList[fingerid[0]][1] < lmList[fingerid[0] - 1][1]:
             fingers.append(1)
         else:
             fingers.append(0)
         print(lmList)
-        # viết cho 4 ngón dài
+        # viết cho 4 ngón còn lại
         for id in range(1, 5):
             if lmList[fingerid[id]][2] < lmList[fingerid[id] - 2][2]:
                 fingers.append(1)
